@@ -1,9 +1,11 @@
 # docker build -t "nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04" .
 #
-#FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
-#LABEL maintainer "NVIDIA CORPORATION <cudatools@nvidia.com>"
 
-FROM ubuntu:19.10
+#FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+
+FROM ubuntu:20.10
+
+LABEL maintainer "An-Cheng Yang<acyang0903@gmail.com>"
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH /opt/conda/bin:$PATH
