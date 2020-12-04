@@ -16,7 +16,7 @@ RUN apt-get update --fix-missing && \
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 
 RUN conda config --add channels conda-forge && \
-    conda create -n lfpy python=3 neuron lfpy ipython jupyterlab git matplotlib make gxx_linux-64 "nodejs>15" ipyparallel plotly psutil requests ipywidgets pandas seaborn && \
+    conda create -n lfpy python=3 neuron lfpy ipython jupyterlab git matplotlib make gxx_linux-64 "nodejs>15" ipyparallel plotly psutil requests ipywidgets pandas seaborn vtk && \
     /opt/conda/envs/lfpy/bin/jupyter-lab --generate-config && \
 #    sed -ie "s/#c.NotebookApp.tornado_settings = {}/c.NotebookApp.tornado_settings = {'headers':{'Content-Security-Policy':\"frame-ancestors http:\/\/*.*.*.* 'self'\"}}/g" /root/.jupyter/jupyter_notebook_config.py && \
     git clone https://github.com/LFPy/LFPy.git /root/LFPy
