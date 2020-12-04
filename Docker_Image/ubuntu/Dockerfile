@@ -4,7 +4,6 @@ FROM ubuntu:20.10
 LABEL maintainer "An-Cheng Yang<acyang0903@gmail.com>"
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-ENV PATH /opt/conda/bin:$PATH
 
 RUN apt-get update --fix-missing && \
     apt-get install -y wget bzip2 ca-certificates curl git apt-utils gnupg orca vim && \
@@ -15,11 +14,13 @@ RUN apt-get update --fix-missing && \
     apt-get install -y conda && apt-get clean && rm -rf /var/lib/apt/lists/* && \
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 
+ENV PATH /opt/conda/bin:$PATH
+
 RUN conda config --add channels conda-forge && \
     conda create -n lfpy python=3 neuron lfpy ipython jupyterlab git matplotlib make gxx_linux-64 "nodejs>15" ipyparallel plotly psutil requests ipywidgets pandas seaborn && \
     /opt/conda/envs/lfpy/bin/jupyter-lab --generate-config && \
 #    sed -ie "s/#c.NotebookApp.tornado_settings = {}/c.NotebookApp.tornado_settings = {'headers':{'Content-Security-Policy':\"frame-ancestors http:\/\/*.*.*.* 'self'\"}}/g" /root/.jupyter/jupyter_notebook_config.py && \
-    git clone https://github.com/LFPy/LFPy.git /root/LFPy
+    git clone https://github.com/LFPy/LFPy.git
 
 RUN conda run -n lfpy jupyter labextension install jupyterlab-plotly @jupyter-widgets/jupyterlab-manager plotlywidget
 
