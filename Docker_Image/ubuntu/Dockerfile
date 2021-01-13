@@ -8,7 +8,7 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 TZ=Asia/Taipei
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update --fix-missing && \
-    apt-get install -y wget bzip2 ca-certificates curl git apt-utils gnupg orca vim vtk7 && \
+    apt-get install -y wget unzip bzip2 ca-certificates curl git apt-utils gnupg orca vim vtk7 && \
     curl https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc | gpg --dearmor > /tmp/conda.gpg && \
     install -o root -g root -m 644 /tmp/conda.gpg /etc/apt/trusted.gpg.d/ && \
     echo "deb [arch=amd64] https://repo.anaconda.com/pkgs/misc/debrepo/conda stable main" > /etc/apt/sources.list.d/conda.list && \
