@@ -22,7 +22,9 @@ RUN conda config --add channels conda-forge && \
     conda create -n lfpy python=3 neuron lfpy ipython "jupyterlab=2.2.9" git matplotlib make gxx_linux-64 "nodejs>15" ipyparallel plotly psutil requests ipywidgets pandas seaborn vtk scikit-learn && \
     /opt/conda/envs/lfpy/bin/jupyter-lab --generate-config && \
     sed -i "s/# c.NotebookApp.tornado_settings = {}/c.NotebookApp.tornado_settings = {'headers':{'Content-Security-Policy':\"frame-ancestors http:\/\/*.*.*.* 'self'\"}}/g" /root/.jupyter/jupyter_notebook_config.py && \
-    git clone https://github.com/LFPy/LFPy.git
+    git clone https://github.com/LFPy/LFPy.git && \
+    git clone https://github.com/NeuralEnsemble/parameters.git && \
+    git clone https://github.com/INCF/csa.git
 # In jupyter2.2.9 config file is /root/.jupyter/jupyter_notebook_config.py
 # In jupyter3 config file change to /root/.jupyter/jupyter_lab_config.py
 
