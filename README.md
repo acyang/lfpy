@@ -1,6 +1,9 @@
 # How to run
 
 0. Make sure your Docker environment is ok.
-1. docker pull acyang/lfpy_ubuntu:latest
-2. docker run --name jupyter -v /work:/work -d -p 6789:8888 acyang/lfpy_ubuntu:latest jupyter lab --ip='*' --no-browser --allow-root --NotebookApp.token=''
-3. open http://YOUR_IP:6789/lab in browser. 
+`systemctl status docker`
+1. Create a permanent storage area on host machine.
+`mkdir /work` 
+2. docker pull acyang/lfpy_ubuntu:latest
+3. docker run --name lfpy -d --privileged -v /work:/work -p 6789:8888 lfpy:latest jupyter lab --ip='*' --no-browser --allow-root
+4. open http://YOUR_IP:6789/lab in browser. 
