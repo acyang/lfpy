@@ -23,8 +23,7 @@ ENV PATH /opt/conda/bin:$PATH
 #    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN conda config --add channels conda-forge && \
-    conda create -n lfpy python=3 neuron lfpy ipython "jupyterlab=2.2.9" git matplotlib make gxx_linux-64 && \
-    "nodejs>15" ipyparallel plotly psutil requests ipywidgets pandas seaborn scikit-learn && \
+    conda create -n lfpy python=3 neuron lfpy ipython "jupyterlab=2.2.9" git matplotlib make gxx_linux-64 "nodejs>15" ipyparallel plotly psutil requests ipywidgets pandas seaborn scikit-learn && \
 #    vtk && \
     conda clean -a -y && \
     /opt/conda/envs/lfpy/bin/jupyter-lab --generate-config && \
