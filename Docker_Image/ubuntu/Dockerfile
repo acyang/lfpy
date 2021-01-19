@@ -31,7 +31,7 @@ RUN conda config --add channels conda-forge && \
 # In jupyter2.2.9 config file is /root/.jupyter/jupyter_notebook_config.py
 # In jupyter3 config file change to /root/.jupyter/jupyter_lab_config.py
 
-RUN conda run -n lfpy pip install csa parameters NeuroTools
+RUN conda run -n lfpy pip install csa parameters NeuroTools elephant
 
 RUN conda run -n lfpy jupyter labextension install jupyterlab-plotly @jupyter-widgets/jupyterlab-manager plotlywidget
 
@@ -41,4 +41,5 @@ RUN mkdir -p /src && cd /src && \
     git clone https://github.com/LFPy/LFPy.git && \
     git clone https://github.com/NeuralEnsemble/parameters.git && \
     git clone https://github.com/INCF/csa.git && \
-    git clone https://github.com/NeuralEnsemble/NeuroTools.git
+    git clone https://github.com/NeuralEnsemble/NeuroTools.git && \
+    git clone https://github.com/NeuralEnsemble/elephant.git
