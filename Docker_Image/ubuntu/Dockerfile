@@ -7,7 +7,7 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 TZ=Asia/Taipei
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-COPY lfpy.yml .
+COPY lfpy.yml /root
 
 RUN apt-get update --fix-missing && \
     apt-get install -y wget unzip bzip2 ca-certificates curl git apt-utils gnupg vim && \
@@ -27,7 +27,7 @@ ENV PATH /opt/conda/bin:$PATH
 RUN conda config --add channels conda-forge && \
 #    conda create -n lfpy python=3 neuron lfpy ipython "jupyterlab=2.2.9" git matplotlib make gxx_linux-64 "nodejs>15" mpich ipyparallel plotly psutil requests ipywidgets pandas seaborn scikit-learn && \
 #    vtk && \
-    conda env create -f lfpy.yml && \
+    conda env create -f /root/lfpy.yml && \
     conda clean -a -y && \
     /opt/conda/envs/lfpy/bin/jupyter-lab --generate-config && \
     sed -i "s/# c.NotebookApp.tornado_settings = {}/c.NotebookApp.tornado_settings = {'headers':{'Content-Security-Policy':\"frame-ancestors http:\/\/*.*.*.* 'self'\"}}/g" /root/.jupyter/jupyter_notebook_config.py
