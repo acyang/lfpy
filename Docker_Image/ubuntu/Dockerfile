@@ -27,7 +27,7 @@ ENV PATH /opt/conda/bin:$PATH
 RUN conda config --add channels conda-forge && \
 #    conda create -n lfpy python=3 neuron lfpy ipython "jupyterlab=2.2.9" git matplotlib make gxx_linux-64 "nodejs>15" mpich ipyparallel plotly psutil requests ipywidgets pandas seaborn scikit-learn && \
 #    vtk && \
-    conda env create -f lfpy.yml
+    conda env create -f lfpy.yml && \
     conda clean -a -y && \
     /opt/conda/envs/lfpy/bin/jupyter-lab --generate-config && \
     sed -i "s/# c.NotebookApp.tornado_settings = {}/c.NotebookApp.tornado_settings = {'headers':{'Content-Security-Policy':\"frame-ancestors http:\/\/*.*.*.* 'self'\"}}/g" /root/.jupyter/jupyter_notebook_config.py
