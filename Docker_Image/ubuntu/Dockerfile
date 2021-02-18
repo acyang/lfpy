@@ -10,7 +10,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY lfpy_new.yml /root
 
 RUN apt-get update --fix-missing && \
-    apt-get install --no-install-recommends -y wget unzip bzip2 ca-certificates curl git apt-utils gnupg vim && \
+    apt-get install --no-install-recommends -y wget unzip bzip2 ca-certificates curl git apt-utils gnupg pkg-config vim && \
     curl https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc | gpg --dearmor > /tmp/conda.gpg && \
     install -o root -g root -m 644 /tmp/conda.gpg /etc/apt/trusted.gpg.d/ && \
     echo "deb [arch=amd64] https://repo.anaconda.com/pkgs/misc/debrepo/conda stable main" > /etc/apt/sources.list.d/conda.list && \
@@ -35,7 +35,7 @@ RUN conda config --add channels conda-forge && \
 # In jupyter2.2.9 config file is /root/.jupyter/jupyter_notebook_config.py
 # In jupyter3 config file change to /root/.jupyter/jupyter_lab_config.py
 
-RUN conda run -n lfpy pip install csa parameters NeuroTools elephant
+RUN conda run -n lfpy pip install MEArec csa parameters NeuroTools elephant
 
 #RUN conda run -n lfpy conda install lfpy
 
@@ -48,4 +48,5 @@ RUN mkdir -p /src && cd /src && \
     git clone https://github.com/NeuralEnsemble/parameters.git && \
     git clone https://github.com/INCF/csa.git && \
     git clone https://github.com/NeuralEnsemble/NeuroTools.git && \
-    git clone https://github.com/NeuralEnsemble/elephant.git
+    git clone https://github.com/NeuralEnsemble/elephant.git && \
+    git clone https://github.com/alejoe91/MEArec.git
